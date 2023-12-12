@@ -1,6 +1,6 @@
 # weather_app
 
-A new Flutter project.
+Flutter weather app puts you in control, allowing you to check weather by entering the city name to view current conditions, avg, max, and min temps instantly.
 
 ## Getting Started
 

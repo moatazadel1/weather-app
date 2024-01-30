@@ -1,3 +1,5 @@
+import 'package:intl/intl.dart';
+
 class WeatherModel {
   final String cityName;
   final DateTime date;
@@ -19,7 +21,8 @@ class WeatherModel {
   factory WeatherModel.fromJson(json) {
     return WeatherModel(
       cityName: json['location']['name'],
-      date: DateTime.parse(json['location']['localtime']),
+      // date: DateTime.parse(json['location']['localtime']),
+      date: DateFormat('yyyy-MM-dd H:mm').parse(json['location']['localtime']),
       image: json['forecast']['forecastday'][0]['day']['condition']['icon'],
       avgTemp: json['forecast']['forecastday'][0]['day']['avgtemp_c'],
       maxTemp: json['forecast']['forecastday'][0]['day']['maxtemp_c'],

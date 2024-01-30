@@ -1,21 +1,22 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:weather_app/cubits/weather_cubit/weather_cubit.dart';
 import 'package:weather_app/main.dart';
-import 'package:weather_app/models/weather_model.dart';
 
 class WeatherData extends StatelessWidget {
-  final WeatherModel weatherModel;
-  const WeatherData({super.key, required this.weatherModel});
+  const WeatherData({super.key});
 
   @override
   Widget build(BuildContext context) {
+    final weatherCubit = BlocProvider.of<WeatherCubit>(context).weatherModel;
     return Center(
       child: Container(
         decoration: BoxDecoration(
           gradient: LinearGradient(
             colors: [
-              colorFromCondition(weatherModel.weatherCondition),
-              colorFromCondition(weatherModel.weatherCondition)[200]!,
-              colorFromCondition(weatherModel.weatherCondition)[50]!,
+              colorFromCondition(weatherCubit!.weatherCondition),
+              colorFromCondition(weatherCubit.weatherCondition)[200]!,
+              colorFromCondition(weatherCubit.weatherCondition)[50]!,
             ],
             begin: Alignment.topCenter,
             end: Alignment.bottomCenter,
@@ -25,14 +26,14 @@ class WeatherData extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Text(
-              weatherModel.cityName,
+              weatherCubit.cityName,
               style: const TextStyle(
                 fontSize: 25,
                 fontWeight: FontWeight.bold,
               ),
             ),
             Text(
-              'updated at ${weatherModel.date.hour}:${weatherModel.date.minute.toString().padLeft(2, '0')}',
+              'updated at ${weatherCubit.date.hour}:${weatherCubit.date.minute.toString().padLeft(2, '0')}',
               style: const TextStyle(
                 fontSize: 20,
               ),
@@ -44,10 +45,10 @@ class WeatherData extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
                 Image.network(
-                  "https:${weatherModel.image}",
+                  "https:${weatherCubit.image}",
                 ),
                 Text(
-                  "${weatherModel.avgTemp}",
+                  "${weatherCubit.avgTemp}",
                   style: const TextStyle(
                     fontSize: 25,
                     fontWeight: FontWeight.bold,
@@ -57,10 +58,10 @@ class WeatherData extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      "Maxtemp: ${weatherModel.maxTemp.round()}",
+                      "Maxtemp: ${weatherCubit.maxTemp.round()}",
                     ),
                     Text(
-                      "Mintemp: ${weatherModel.minTemp.round()}",
+                      "Mintemp: ${weatherCubit.minTemp.round()}",
                     )
                   ],
                 )
@@ -70,7 +71,7 @@ class WeatherData extends StatelessWidget {
               height: 20,
             ),
             Text(
-              weatherModel.weatherCondition,
+              weatherCubit.weatherCondition,
               style: const TextStyle(
                 fontSize: 25,
                 fontWeight: FontWeight.bold,

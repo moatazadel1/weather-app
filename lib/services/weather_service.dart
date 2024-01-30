@@ -1,5 +1,4 @@
 import 'dart:developer';
-
 import 'package:dio/dio.dart';
 import 'package:weather_app/models/weather_model.dart';
 

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:weather_app/cubits/weather_cubit/weather_cubit.dart';
-import 'package:weather_app/main.dart';
+import 'package:weather_app/helper/color_from_condition.dart';
 
 class WeatherData extends StatelessWidget {
   const WeatherData({super.key});
